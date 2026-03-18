@@ -1,0 +1,857 @@
+@charset "UTF-8";
+.visualy-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  padding: 0;
+  margin: -0.0625rem;
+  white-space: nowrap;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-white);
+  padding: 2.5rem 2.9375rem;
+  font-size: 1rem;
+}
+@media (max-width: 830) {
+  body {
+    padding: 1.25rem 2.9375rem;
+  }
+}
+@media (max-width: 500) {
+  body {
+    padding: 1.25rem 1.25rem;
+  }
+}
+
+.Main__Window {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1.25rem;
+}
+@media (max-width: 830) {
+  .Main__Window {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+html {
+  font-size: 67%;
+}
+
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure, fieldset):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root {
+  --color-main: #7E7C7C;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-cart: #252222;
+  --color-search: #c2d4d3;
+  --color-background: #1E1E1E;
+}
+
+.light-theme {
+  --color-main: #7E7C7C;
+  --color-black: #c6c6c6;
+  --color-white: #000000;
+  --color-cart: #72bab4;
+  --color-background: #747474;
+  --color-search: #8cc8be;
+}
+
+.LeftBar {
+  background-color: var(--color-black);
+  width: 28.25rem;
+  height: 62.125rem;
+  border-radius: 1.5625rem;
+  padding: 2.53125rem 3.46875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+@media (max-width: 877) {
+  .LeftBar {
+    padding: 1.5625rem 1.75rem;
+  }
+}
+@media (max-width: 830) {
+  .LeftBar {
+    position: relative;
+    width: 58.625rem;
+    height: 100%;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-top: 2.53125rem;
+    padding-bottom: 2.53125rem;
+  }
+}
+@media (max-width: 660) {
+  .LeftBar {
+    width: 100%;
+    max-width: 58.625rem;
+    padding: 1.1875rem 1.5rem;
+  }
+}
+
+.search__input {
+  background-image: url("/img/Search.svg");
+  background-repeat: no-repeat;
+  background-position: 0.625rem center;
+  background-size: 1.125rem;
+  background-color: var(--color-search);
+  border: none;
+  border-radius: 1.5625rem;
+  width: 100%;
+  height: 3.375rem;
+  padding: 0.9375rem 2.0625rem;
+  color: #7E7C7C;
+}
+
+.weather__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 0.0625rem solid var(--color-white);
+}
+.weather__container__img {
+  width: 19.75rem;
+  height: 19.75rem;
+}
+@media (max-width: 830) {
+  .weather__container__img {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+@media (max-width: 423) {
+  .weather__container__img {
+    width: 12.5rem;
+    height: 12.5rem;
+  }
+}
+.weather__container__degrees {
+  font-size: 6rem;
+  margin-bottom: 1.5625rem;
+}
+@media (max-width: 830) {
+  .weather__container__degrees {
+    margin-bottom: 0rem;
+  }
+}
+@media (max-width: 423) {
+  .weather__container__degrees {
+    font-size: 5rem;
+  }
+}
+@media (max-width: 366) {
+  .weather__container__degrees {
+    font-size: 4.5625rem;
+  }
+}
+.weather__container__location {
+  font-size: 1.6875rem;
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.125rem;
+}
+@media (max-width: 830) {
+  .weather__container__location {
+    font-size: 2.4375rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    margin-left: 10%;
+    margin-bottom: 0rem;
+  }
+}
+@media (max-width: 600) {
+  .weather__container__location {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: 0;
+    width: 100%;
+    max-width: 60%;
+    gap: 1.875rem;
+  }
+}
+@media (max-width: 366) {
+  .weather__container__location {
+    font-size: 2.125rem;
+  }
+}
+@media (max-width: 830) {
+  .weather__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 660) {
+  .weather__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+@media (max-width: 600) {
+  .weather__container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 830) {
+  .group {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 600) {
+  .group {
+    padding-right: 11.875rem;
+  }
+}
+
+.Params {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 20rem;
+  margin-top: 1.875rem;
+}
+@media (max-width: 830) {
+  .Params {
+    font-size: 1.25rem;
+  }
+}
+.Params__clouds {
+  display: flex;
+  flex-direction: row;
+  padding: 0.375rem 0rem;
+  gap: 0.625rem;
+}
+.Params__TempMax {
+  display: flex;
+  flex-direction: row;
+  padding: 0.375rem 0rem;
+  gap: 0.625rem;
+}
+.Params__TempMin {
+  display: flex;
+  flex-direction: row;
+  padding: 0.375rem 0rem;
+  gap: 0.625rem;
+}
+
+.WindSpeed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--color-cart);
+  border-radius: 0.75rem;
+  padding: 0.9375rem 1rem;
+  width: 21.25rem;
+}
+@media (max-width: 830) {
+  .WindSpeed {
+    position: absolute;
+    top: 23.75rem;
+    left: 28.125rem;
+    width: 100%;
+    max-width: 26.25rem;
+    height: 8.125rem;
+  }
+}
+@media (max-width: 660) {
+  .WindSpeed {
+    position: initial;
+  }
+}
+@media (max-width: 423) {
+  .WindSpeed {
+    max-width: 100%;
+  }
+}
+.WindSpeed__section {
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: center;
+}
+.WindSpeed__section__img {
+  width: 2.9375rem;
+  height: 2.9375rem;
+}
+@media (max-width: 830) {
+  .WindSpeed__section__img {
+    width: 4.375rem;
+    height: 4.375rem;
+  }
+}
+@media (max-width: 660) {
+  .WindSpeed__section__img {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+}
+@media (max-width: 334) {
+  .WindSpeed__section__img {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+}
+.WindSpeed__section__text {
+  font-size: 1.125rem;
+}
+@media (max-width: 830) {
+  .WindSpeed__section__text {
+    font-size: 1.375rem;
+  }
+}
+@media (max-width: 660) {
+  .WindSpeed__section__text {
+    font-size: 1.1875rem;
+  }
+}
+.WindSpeed__section__bold {
+  font-size: 1.5rem;
+}
+@media (max-width: 830) {
+  .WindSpeed__section__bold {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 660) {
+  .WindSpeed__section__bold {
+    font-size: 1.375rem;
+  }
+}
+
+.search__div {
+  position: relative;
+}
+@media (max-width: 830) {
+  .search__div {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 65%;
+  }
+}
+@media (max-width: 500) {
+  .search__div {
+    width: 100%;
+  }
+}
+
+.search__ul {
+  background-color: #C2D4D3;
+  position: absolute;
+  padding: 0.9375rem 0.9375rem;
+  border-radius: 0.75rem;
+  top: 3.75rem;
+  left: 0.0625rem;
+  width: 100%;
+  opacity: 0.6;
+  max-height: 12.5rem;
+  overflow-y: auto;
+}
+
+.search__li {
+  color: black;
+  cursor: pointer;
+  padding: 0.3125rem 0rem;
+}
+
+.search__error {
+  position: absolute;
+  top: -1.5625rem;
+  left: 0.3125rem;
+}
+
+.RightBar {
+  background-color: var(--color-black);
+  width: 58.625rem;
+  height: 62.125rem;
+  border-radius: 1.5625rem;
+  padding: 2.5rem 2.9375rem;
+}
+@media (max-width: 877) {
+  .RightBar {
+    padding: 1.5625rem 1.75rem;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 660) {
+  .RightBar {
+    width: 100%;
+    max-width: 58.625rem;
+  }
+}
+@media (max-width: 450) {
+  .RightBar {
+    padding: 1.1875rem 1.125rem;
+  }
+}
+
+.btn__RightBar {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  opacity: 50%;
+  border: none;
+  margin-right: 1.625rem;
+  font-size: 1.625rem;
+  border-bottom: 0.0625rem solid var(--color-black);
+}
+.btn__RightBar:hover {
+  transition-duration: 0.4s;
+  opacity: 100%;
+  border-bottom: 0.0625rem solid var(--color-white);
+}
+.btn__RightBar__Active {
+  background-color: var(--color-black);
+  border: none;
+  color: var(--color-white);
+  margin-right: 1.625rem;
+  font-size: 1.625rem;
+  opacity: 100%;
+  border-bottom: 0.0625rem solid var(--color-white);
+}
+
+.btn__section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* контейнер */
+.toggle {
+  width: 5rem;
+  height: 2.1875rem;
+  background: #222;
+  border-radius: 2.5rem;
+  position: relative;
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: inset 0 0 0.625rem rgba(0, 0, 0, 0.8);
+}
+
+/* ползунок */
+.slider {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: linear-gradient(145deg, #444, #222);
+  border-radius: 50%;
+  top: 0.3125rem;
+  left: 0.3125rem;
+  transition: 0.4s;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.7);
+}
+
+/* активное состояние */
+.toggle.active {
+  background: #e6e6e6;
+}
+
+.toggle.active .slider {
+  left: 3.125rem;
+  background: linear-gradient(145deg, #ffffff, #cfcfcf);
+}
+
+/* небольшая плавная анимация */
+.toggle:active .slider {
+  transform: scale(0.92);
+}
+
+.Week__Days {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2.8125rem;
+}
+@media (max-width: 570) {
+  .Week__Days {
+    display: flex;
+    gap: 0.75rem;
+    overflow-y: hidden;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+  }
+}
+
+.Week__Info {
+  margin-top: 3.0625rem;
+}
+.Week__Info__Title {
+  font-size: 1.625rem;
+  margin-bottom: 2.5rem;
+}
+.Week__Info__Sunset {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  margin-top: 1.25rem;
+}
+.Week__Info__Sunset__div {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5625rem;
+}
+.Week__Info__Sunset__div__time {
+  font-size: 1.125rem;
+}
+.Week__Info__Sunset__div__switch {
+  font-size: 1rem;
+}
+.Week__Info__Sunset__p {
+  display: flex;
+  flex-direction: column;
+  gap: 6.25rem;
+}
+.Week__Info__section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1.5625rem;
+}
+@media (max-width: 877) {
+  .Week__Info__section {
+    gap: 0.9375rem;
+  }
+}
+@media (max-width: 570) {
+  .Week__Info__section {
+    display: flex;
+    gap: 0.75rem;
+    overflow-y: hidden;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+  }
+}
+.Week__Info__block {
+  background-color: var(--color-cart);
+  border-radius: 0.75rem;
+  padding: 0.9375rem 1.25rem;
+  width: 100%;
+  height: 13.8125rem;
+}
+@media (max-width: 530) {
+  .Week__Info__block {
+    width: 40%;
+    min-width: 4.375rem;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 441) {
+  .Week__Info__block {
+    width: 80%;
+    min-width: 4.375rem;
+    flex-shrink: 0;
+  }
+}
+.Week__Info__block__params {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.Week__Info__block__parag {
+  font-size: 1.25rem;
+}
+.Week__Info__name {
+  font-size: 1.125rem;
+  margin-bottom: 0.625rem;
+}
+.Week__Info__state {
+  font-size: 2.4375rem;
+  font-weight: 700;
+  margin-bottom: 0.9375rem;
+  margin-top: 1.5625rem;
+}
+
+.Green {
+  color: green;
+}
+
+.Blue {
+  color: blue;
+}
+
+.Red {
+  color: Red;
+}
+
+.Yellow {
+  color: yellow;
+}
+
+.Orange {
+  color: orange;
+}
+
+.Purple {
+  color: purple;
+}
+
+.Week__Grafic {
+  margin-top: 2.5rem;
+  background-color: var(--color-cart);
+  padding-top: 0.9375rem;
+  border-radius: 0.75rem;
+  align-items: center;
+  position: relative;
+  height: 16.25rem;
+}
+@media (max-width: 400) {
+  .Week__Grafic {
+    height: 18.125rem;
+  }
+}
+
+.Grafic__abs {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.625rem;
+}
+
+.tooltip {
+  font-size: 1.125rem;
+}
+
+.Cart__Weather__img {
+  width: 4.6875rem;
+  height: 4.6875rem;
+}
+
+.imgWidth {
+  width: 4.375rem;
+  height: 4.375rem;
+}
+
+.imgSunrise {
+  width: 3.25rem;
+  height: 3.25rem;
+}
+@media (max-width: 877) {
+  .imgSunrise {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.Cart__Weather {
+  background-color: var(--color-cart);
+  width: 6.625rem;
+  height: 11rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.25rem;
+}
+@media (max-width: 940) {
+  .Cart__Weather {
+    width: 5.625rem;
+  }
+}
+@media (max-width: 830) {
+  .Cart__Weather {
+    width: 6.625rem;
+  }
+}
+@media (max-width: 570) {
+  .Cart__Weather {
+    min-width: 4.375rem;
+    flex-shrink: 0;
+  }
+}/*# sourceMappingURL=index.css.map */

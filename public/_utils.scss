@@ -1,0 +1,19 @@
+@use './helpers' as *;
+
+:root{
+    --color-main: #7E7C7C;
+    --color-black: #000000;
+    --color-white: #FFFFFF;
+    --color-cart: #252222;
+    --color-search: #c2d4d3;
+    --color-background: #1E1E1E;
+}
+
+.light-theme{
+    --color-main: #7E7C7C;
+    --color-black: #c6c6c6;
+    --color-white: #000000;
+    --color-cart: #72bab4;
+    --color-background: #747474;
+    --color-search: #8cc8be;
+}

@@ -1,0 +1,304 @@
+@use '../helpers' as *;
+
+.LeftBar{
+    background-color: var(--color-black);
+    width: rem(452);
+    height: rem(994);
+    border-radius: rem(25);
+    padding: rem(40.5) rem(55.5);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    @media(max-width:877) {
+        padding: rem(25) rem(28);
+    }
+
+    @media(max-width:830) {
+        position: relative;
+        width: rem(938);
+        height: 100%;
+        padding-left: 8%;
+        padding-right: 8%;
+        padding-top:rem(40.5);
+        padding-bottom:rem(40.5);
+    }
+
+   @media(max-width:660) {
+        width: 100%;
+        max-width: rem(938);
+        padding: rem(19) rem(24);
+    }  
+}
+
+.search__input{
+    background-image: url('/img/Search.svg');
+    background-repeat: no-repeat;
+    background-position: rem(10) center;
+    background-size:rem(18);
+    background-color: var(--color-search);
+
+    border: none;
+    border-radius: rem(25);
+    width: 100%;
+    height: rem(54);
+    padding: rem(15) rem(33);
+    color: #7E7C7C;
+}
+
+.weather__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: rem(1) solid var(--color-white);
+    
+    &__img{
+        width: rem(316);
+        height: rem(316);
+
+        @media(max-width:830) {
+            width: rem(240);
+            height: rem(240);
+        }
+
+        @media(max-width:423) {
+            width: rem(200);
+            height: rem(200);
+        }
+    }
+
+    &__degrees{
+        font-size: rem(96);
+        margin-bottom: rem(25);
+
+        @media(max-width:830) {
+            margin-bottom: rem(0);
+        }
+
+        @media(max-width:423) {
+            font-size: rem(80);
+        }
+
+        @media(max-width:366) {
+            font-size: rem(73);
+        }
+    }
+
+    &__location{
+        font-size: rem(27);
+        display: flex;
+        gap: rem(24);
+        margin-bottom: rem(18);
+
+        @media(max-width:830) {
+            font-size: rem(39);
+            flex-direction: column;
+            gap: rem(8);
+            align-items: center;
+            margin-left: 10%;
+            margin-bottom: rem(0);
+        }
+
+        @media(max-width: 600){
+            flex-direction: row;
+            justify-content: space-around;
+            margin-left: 0;
+            width: 100%;
+            max-width: 60%; 
+            gap: rem(30);
+        }
+
+        @media(max-width:366) {
+            font-size: rem(34);
+        }
+    }
+
+    @media(max-width:830) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    @media(max-width:660) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    @media(max-width:600) {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+
+    }
+}
+
+.group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media(max-width:830) {
+        display: flex;
+        flex-direction: row;
+        width:100%;
+        justify-content: space-between;
+    }
+
+    @media(max-width:600) {
+        padding-right: rem(190);
+    }
+}
+
+.Params{
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    width: rem(320);
+    margin-top: rem(30);
+
+    @media(max-width:830) {
+        font-size: rem(20);
+    }
+
+    &__clouds{
+        display: flex;
+        flex-direction: row;
+        padding: rem(6) rem(0);
+        gap: rem(10);
+    }
+
+    &__TempMax{
+        display: flex;
+        flex-direction: row;  
+        padding: rem(6) rem(0); 
+        gap: rem(10);
+    }
+
+    &__TempMin{
+        display: flex;
+        flex-direction: row; 
+        padding: rem(6) rem(0);  
+        gap: rem(10);
+    }
+}
+
+.WindSpeed{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--color-cart);
+    border-radius: rem(12);
+    padding: rem(15) rem(16);
+    width: rem(340);
+
+    @media(max-width:830) {
+        position: absolute;
+        top: rem(380);
+        left: rem(450);
+        width: 100%;
+        max-width: rem(420);
+        height: rem(130);
+    }
+
+    @media(max-width:660) {
+        position:initial;
+    }
+
+    @media(max-width:423) {
+        max-width: 100%;
+    }
+    
+    &__section{
+        display: flex;
+        flex-direction: row;
+        gap: rem(10);
+        align-items: center; 
+
+        &__img{
+            width: rem(47);
+            height: rem(47);
+
+            @media(max-width:830) {
+                width: rem(70);
+                height: rem(70);
+            }
+
+            @media(max-width:660) {
+                width: rem(60);
+                height: rem(60);
+            }
+
+            @media(max-width:334) {
+                width: rem(50);
+                height: rem(50);
+            }
+        }
+
+        &__text{
+            font-size: rem(18);
+
+            @media(max-width:830) {
+                font-size: rem(22);
+            }
+
+            @media(max-width:660) {
+                font-size: rem(19);
+            }
+        }
+
+        &__bold{
+            font-size: rem(24);
+
+            @media(max-width:830) {
+                font-size: rem(28);
+            }
+
+            @media(max-width:660) {
+                font-size: rem(22);
+            }
+        }
+    }
+}
+
+.search__div{
+    position: relative;
+
+    @media(max-width:830) {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        width: 65%;
+    }
+
+     @media(max-width:500) {
+        width: 100%;
+    }
+}
+
+.search__ul{
+    background-color: #C2D4D3;
+    position: absolute;
+    padding: rem(15) rem(15);
+    border-radius: rem(12);
+    top: rem(60);
+    left: rem(1);
+    width:100%;
+    opacity: 0.6;
+    max-height: rem(200);
+    overflow-y: auto;
+}
+
+.search__li{
+    color: black;
+    cursor: pointer;
+    padding: rem(5) rem(0);
+}
+
+.search__error{
+    position: absolute;
+    top: rem(-25);
+    left: rem(5);
+}
+
