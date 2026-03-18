@@ -34,7 +34,7 @@ export default function WeekGrafic (){
         <div className="Week__Grafic">
             <div className="Grafic__abs" style={{width: "103%", height: '100%'}}>
                 <ResponsiveContainer>
-                    <LineChart data={graficData}>
+                    <LineChart data={graficData} className="Grafic__hover">
                         <defs>
                             <filter id="shadow">
                                 <feDropShadow

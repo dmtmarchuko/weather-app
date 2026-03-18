@@ -803,6 +803,18 @@ label {
   top: 0.625rem;
 }
 
+.Grafic__hover * {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.Grafic__hover *:focus, .Grafic__hover *:focus-visible {
+  outline: none;
+}
+
 .tooltip {
   font-size: 1.125rem;
 }

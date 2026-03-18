@@ -259,6 +259,20 @@
     top: rem(10);
 }
 
+.Grafic__hover * {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    &:focus,
+    &:focus-visible{
+        outline: none;
+    }
+}
+
 .tooltip{
     font-size: rem(18);
 }
