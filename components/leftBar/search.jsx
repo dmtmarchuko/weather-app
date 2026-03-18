@@ -19,7 +19,7 @@ export const Search = () => {
         }
 
         try{
-            const res =  await fetch(`http://localhost:3000/api/weather?city=${text}`)
+            const res =  await fetch(`/api/weather?city=${text}`)
             const data = await res.json()
              
             if(data.cod === "404"){
