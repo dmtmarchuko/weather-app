@@ -8,8 +8,10 @@ export const LeftBar = () => {
         <div className="LeftBar">
             <Search/>
             <Weather/>
-            <Params/>
-            <WindSpeed/>
+            <div className="group__ParamsAndWidth">
+                <Params/>
+                <WindSpeed/>
+            </div>
         </div>
     )
 }

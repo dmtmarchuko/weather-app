@@ -347,7 +347,6 @@ label {
     justify-content: space-around;
     margin-left: 0;
     width: 100%;
-    max-width: 60%;
     gap: 1.875rem;
   }
 }
@@ -409,6 +408,11 @@ label {
     font-size: 1.25rem;
   }
 }
+@media (max-width: 420) {
+  .Params {
+    font-size: 1.125rem;
+  }
+}
 .Params__clouds {
   display: flex;
   flex-direction: row;
@@ -452,9 +456,15 @@ label {
     position: initial;
   }
 }
-@media (max-width: 423) {
+@media (max-width: 420) {
   .WindSpeed {
-    max-width: 100%;
+    flex-direction: column;
+    gap: 1.5625rem;
+    height: 11.25rem;
+    width: 15.625rem;
+    max-width: 90%;
+    justify-content: center;
+    padding: 0.3125rem 0.9375rem;
   }
 }
 .WindSpeed__section {
@@ -462,6 +472,11 @@ label {
   flex-direction: row;
   gap: 0.625rem;
   align-items: center;
+}
+@media (max-width: 420) {
+  .WindSpeed__section {
+    gap: 1.25rem;
+  }
 }
 .WindSpeed__section__img {
   width: 2.9375rem;
@@ -498,6 +513,11 @@ label {
     font-size: 1.1875rem;
   }
 }
+@media (max-width: 390) {
+  .WindSpeed__section__text {
+    font-size: 1rem;
+  }
+}
 .WindSpeed__section__bold {
   font-size: 1.5rem;
 }
@@ -509,6 +529,20 @@ label {
 @media (max-width: 660) {
   .WindSpeed__section__bold {
     font-size: 1.375rem;
+  }
+}
+@media (max-width: 390) {
+  .WindSpeed__section__bold {
+    font-size: 1.1875rem;
+  }
+}
+
+@media (max-width: 420) {
+  .group__ParamsAndWidth {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
   }
 }
 
@@ -733,7 +767,7 @@ label {
 }
 @media (max-width: 441) {
   .Week__Info__block {
-    width: 80%;
+    width: 55%;
     min-width: 4.375rem;
     flex-shrink: 0;
   }
